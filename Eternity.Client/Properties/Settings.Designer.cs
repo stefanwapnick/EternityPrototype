@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Eternity.Properties
+namespace Eternity.Client.Properties
 {
 
 
