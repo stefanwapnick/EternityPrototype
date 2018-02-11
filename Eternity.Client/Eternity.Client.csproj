@@ -33,6 +33,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>favicon-calculator.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -54,6 +57,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Commands\CommandHandler.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
     <Page Include="MainWindow.xaml">
@@ -95,7 +99,9 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="favicon-calculator.ico" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Eternity.Business\Eternity.Business.csproj">
       <Project>{9cb156e7-37a9-4ee3-9ef6-67dace6460d7}</Project>

@@ -4,15 +4,71 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Eternity.Client"
+        xmlns:viewModels="clr-namespace:Eternity.Client.ViewModels"
         mc:Ignorable="d"
-        Title="Eternity" Height="400" Width="280">
+        d:DataContext="{d:DesignInstance Type=viewModels:MainWindowViewModel, IsDesignTimeCreatable=True}"
+        ResizeMode="NoResize"
+        Title="Eternity" Height="460" Width="320">
+    
+    <Window.InputBindings>
+        <KeyBinding Key="D0" Command="{Binding InputCharacterCommand}" CommandParameter="0"></KeyBinding>
+        <KeyBinding Key="NumPad0" Command="{Binding InputCharacterCommand}" CommandParameter="0"></KeyBinding>
+        <KeyBinding Key="D1" Command="{Binding InputCharacterCommand}" CommandParameter="1"></KeyBinding>
+        <KeyBinding Key="NumPad1" Command="{Binding InputCharacterCommand}" CommandParameter="1"></KeyBinding>
+        <KeyBinding Key="D2" Command="{Binding InputCharacterCommand}" CommandParameter="2"></KeyBinding>
+        <KeyBinding Key="NumPad2" Command="{Binding InputCharacterCommand}" CommandParameter="2"></KeyBinding>
+        <KeyBinding Key="D3" Command="{Binding InputCharacterCommand}" CommandParameter="3"></KeyBinding>
+        <KeyBinding Key="NumPad3" Command="{Binding InputCharacterCommand}" CommandParameter="3"></KeyBinding>
+        <KeyBinding Key="D4" Command="{Binding InputCharacterCommand}" CommandParameter="4"></KeyBinding>
+        <KeyBinding Key="NumPad4" Command="{Binding InputCharacterCommand}" CommandParameter="4"></KeyBinding>
+        <KeyBinding Key="D5" Command="{Binding InputCharacterCommand}" CommandParameter="5"></KeyBinding>
+        <KeyBinding Key="NumPad5" Command="{Binding InputCharacterCommand}" CommandParameter="5"></KeyBinding>
+        <KeyBinding Key="D6" Command="{Binding InputCharacterCommand}" CommandParameter="6"></KeyBinding>
+        <KeyBinding Key="NumPad6" Command="{Binding InputCharacterCommand}" CommandParameter="6"></KeyBinding>
+        <KeyBinding Key="D7" Command="{Binding InputCharacterCommand}" CommandParameter="7"></KeyBinding>
+        <KeyBinding Key="NumPad7" Command="{Binding InputCharacterCommand}" CommandParameter="7"></KeyBinding>
+        <KeyBinding Key="D8" Command="{Binding InputCharacterCommand}" CommandParameter="8"></KeyBinding>
+        <KeyBinding Key="NumPad8" Command="{Binding InputCharacterCommand}" CommandParameter="8"></KeyBinding>
+        <KeyBinding Key="D9" Command="{Binding InputCharacterCommand}" CommandParameter="9"></KeyBinding>
+        <KeyBinding Key="NumPad9" Command="{Binding InputCharacterCommand}" CommandParameter="9"></KeyBinding>
+
+        <!-- TODO: Trouble binding period on numpad -->
+        <KeyBinding Key="OemPeriod" Command="{Binding InputCharacterCommand}" CommandParameter="."></KeyBinding>
+        
+        <KeyBinding Modifiers="Shift" Key="OemPlus" Command="{Binding InputCharacterCommand}" CommandParameter="+"></KeyBinding>
+        <KeyBinding Key="OemMinus" Command="{Binding InputCharacterCommand}" CommandParameter="-"></KeyBinding>
+        <KeyBinding Modifiers="Shift" Key="D8" Command="{Binding InputCharacterCommand}" CommandParameter="*"></KeyBinding>
+        <KeyBinding Key="OemQuestion" Command="{Binding InputCharacterCommand}" CommandParameter="/"></KeyBinding>
+        <KeyBinding Key="Add" Command="{Binding InputCharacterCommand}" CommandParameter="+"></KeyBinding>
+        <KeyBinding Key="Subtract" Command="{Binding InputCharacterCommand}" CommandParameter="-"></KeyBinding>
+        <KeyBinding Key="Multiply" Command="{Binding InputCharacterCommand}" CommandParameter="*"></KeyBinding>
+        <KeyBinding Key="Divide" Command="{Binding InputCharacterCommand}" CommandParameter="/"></KeyBinding>
+
+        <KeyBinding Key="Escape" Command="{Binding ClearCommand}"></KeyBinding>
+
+        <KeyBinding Key="Back" Command="{Binding DeleteCommand}"></KeyBinding>
+        <KeyBinding Key="Delete" Command="{Binding DeleteCommand}"></KeyBinding>
+
+        <KeyBinding Key="OemPlus" Command="{Binding ExecuteComputationCommand}"></KeyBinding>
+        <KeyBinding Key="Enter" Command="{Binding ExecuteComputationCommand}"></KeyBinding>
+
+    </Window.InputBindings>
+    
+    <Window.Resources>
+        <Style TargetType="Button">
+            <Setter Property="FontSize" Value="30"></Setter>
+            <Setter Property="BorderBrush" Value="White"></Setter>
+        </Style>
+        
+    </Window.Resources>
+    
     <Grid>
         
         <!-- Number pad -->
 
         <DockPanel>
-            <Label DockPanel.Dock="Top" Height="30"></Label>
-            <TextBox DockPanel.Dock="Top" Height="50"></TextBox>
+            <Label DockPanel.Dock="Top" Height="40" Content="{Binding StatusText}"></Label>
+            <TextBox DockPanel.Dock="Top" Height="60" Text="{Binding InputText}" FontSize="30" IsReadOnly="True"></TextBox>
 
             <Grid>
                 <Grid.RowDefinitions>
@@ -28,24 +84,23 @@
                     <ColumnDefinition Width="1*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
 
-                <Button Grid.Row="0" Grid.Column="0">7</Button>
-                <Button Grid.Row="0" Grid.Column="1">8</Button>
-                <Button Grid.Row="0" Grid.Column="2">9</Button>
-                <Button Grid.Row="1" Grid.Column="0">4</Button>
-                <Button Grid.Row="1" Grid.Column="1">5</Button>
-                <Button Grid.Row="1" Grid.Column="2">6</Button>
-                <Button Grid.Row="2" Grid.Column="0">1</Button>
-                <Button Grid.Row="2" Grid.Column="1">2</Button>
-                <Button Grid.Row="2" Grid.Column="2">3</Button>
-                <Button Grid.Row="3" Grid.Column="0">0</Button>
-                <Button Grid.Row="3" Grid.Column="1">.</Button>
-                <Button Grid.Row="3" Grid.Column="2">=</Button>
+                <Button Grid.Row="0" Grid.Column="0" Command="{Binding InputCharacterCommand}" CommandParameter="7">7</Button>
+                <Button Grid.Row="0" Grid.Column="1" Command="{Binding InputCharacterCommand}" CommandParameter="8">8</Button>
+                <Button Grid.Row="0" Grid.Column="2" Command="{Binding InputCharacterCommand}" CommandParameter="9">9</Button>
+                <Button Grid.Row="1" Grid.Column="0" Command="{Binding InputCharacterCommand}" CommandParameter="4">4</Button>
+                <Button Grid.Row="1" Grid.Column="1" Command="{Binding InputCharacterCommand}" CommandParameter="5">5</Button>
+                <Button Grid.Row="1" Grid.Column="2" Command="{Binding InputCharacterCommand}" CommandParameter="6">6</Button>
+                <Button Grid.Row="2" Grid.Column="0" Command="{Binding InputCharacterCommand}" CommandParameter="1">1</Button>
+                <Button Grid.Row="2" Grid.Column="1" Command="{Binding InputCharacterCommand}" CommandParameter="2">2</Button>
+                <Button Grid.Row="2" Grid.Column="2" Command="{Binding InputCharacterCommand}" CommandParameter="3">3</Button>
+                <Button Grid.Row="3" Grid.Column="0" Command="{Binding InputCharacterCommand}" CommandParameter="0">0</Button>
+                <Button Grid.Row="3" Grid.Column="1" Command="{Binding InputCharacterCommand}" CommandParameter=".">.</Button>
+                <Button Grid.Row="3" Grid.Column="2" Command="{Binding ExecuteComputationCommand}">=</Button>
 
-
-                <Button Grid.Row="0" Grid.Column="3">/</Button>
-                <Button Grid.Row="1" Grid.Column="3">x</Button>
-                <Button Grid.Row="2" Grid.Column="3">-</Button>
-                <Button Grid.Row="3" Grid.Column="3">+</Button>
+                <Button Grid.Row="0" Grid.Column="3" Command="{Binding InputCharacterCommand}" CommandParameter="/">/</Button>
+                <Button Grid.Row="1" Grid.Column="3" Command="{Binding InputCharacterCommand}" CommandParameter="*">x</Button>
+                <Button Grid.Row="2" Grid.Column="3" Command="{Binding InputCharacterCommand}" CommandParameter="-">-</Button>
+                <Button Grid.Row="3" Grid.Column="3" Command="{Binding InputCharacterCommand}" CommandParameter="+">+</Button>
 
             </Grid>
 
