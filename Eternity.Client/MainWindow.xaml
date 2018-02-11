@@ -8,7 +8,8 @@
         mc:Ignorable="d"
         d:DataContext="{d:DesignInstance Type=viewModels:MainWindowViewModel, IsDesignTimeCreatable=True}"
         ResizeMode="NoResize"
-        Title="Eternity" Height="460" Width="320">
+        Title="Eternity" Height="460" Width="320"
+        Background="#333333">
     
     <Window.InputBindings>
         <KeyBinding Key="D0" Command="{Binding InputCharacterCommand}" CommandParameter="0"></KeyBinding>
@@ -57,7 +58,22 @@
     <Window.Resources>
         <Style TargetType="Button">
             <Setter Property="FontSize" Value="30"></Setter>
-            <Setter Property="BorderBrush" Value="White"></Setter>
+            <Setter Property="Background" Value="#333333"></Setter>
+            <Setter Property="Foreground" Value="White"></Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border Background="{TemplateBinding Background}" BorderBrush="#222222" BorderThickness="1">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#444444"/>
+                </Trigger>
+            </Style.Triggers>
         </Style>
         
     </Window.Resources>
@@ -67,8 +83,8 @@
         <!-- Number pad -->
 
         <DockPanel>
-            <Label DockPanel.Dock="Top" Height="40" Content="{Binding StatusText}"></Label>
-            <TextBox DockPanel.Dock="Top" Height="60" Text="{Binding InputText}" FontSize="30" IsReadOnly="True"></TextBox>
+            <Label DockPanel.Dock="Top" Height="40" Content="{Binding StatusText}" Background="#222222" Foreground="White"></Label>
+            <Label DockPanel.Dock="Top" Height="60" Content="{Binding InputText}" FontSize="30" Background="#222222" Foreground="White"></Label>
 
             <Grid>
                 <Grid.RowDefinitions>

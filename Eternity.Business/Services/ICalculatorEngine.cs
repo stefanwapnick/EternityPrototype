@@ -2,6 +2,6 @@
 {
     public interface ICalculatorEngine
     {
-        double Compute(string mathematicalExpression);
+        string Compute(string mathematicalExpression);
     }
 }

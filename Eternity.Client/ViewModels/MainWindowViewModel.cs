@@ -2,6 +2,7 @@
 using System.Windows.Input;
 using Eternity.Business.Services;
 using Eternity.Client.Commands;
+using Eternity.Common.Exceptions;
 
 namespace Eternity.Client.ViewModels
 {
@@ -53,9 +54,24 @@ namespace Eternity.Client.ViewModels
 
         private void ExecuteComputation(object parameter)
         {
-            double result = _calculatorEngine.Compute(_inputText);
-            StatusText = $"{InputText} = {result}";
-            InputText = string.Empty;
+            try
+            {
+                string result = _calculatorEngine.Compute(_inputText);
+                StatusText = $"{InputText} = {result}";
+            }
+            catch (CalculatorException cExp)
+            {
+                StatusText = cExp.ErrorCode.ToString();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                StatusText = "Unexpected fatal error";
+            }
+            finally
+            {
+                InputText = string.Empty;
+            }
         }
 
     }

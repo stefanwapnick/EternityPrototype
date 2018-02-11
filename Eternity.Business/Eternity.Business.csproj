@@ -40,13 +40,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Calculations\CalculationSymbols.cs" />
+    <Compile Include="Calculations\OperatorManifest.cs" />
     <Compile Include="Calculations\Impl\AdditionCalculation.cs" />
     <Compile Include="Calculations\Impl\DivisionCalculation.cs" />
     <Compile Include="Calculations\ICalculation.cs" />
     <Compile Include="Calculations\Impl\MultiplicationCalculation.cs" />
     <Compile Include="Calculations\Impl\PowerCalculation.cs" />
     <Compile Include="Calculations\Impl\SubtractionCalculation.cs" />
+    <Compile Include="Calculations\OperatorMetadata.cs" />
     <Compile Include="Events\ResultComputedEventArgs.cs" />
     <Compile Include="Factories\CalculationFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -1,6 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using Eternity.Business.Calculations;
 using Eternity.Business.Events;
 using Eternity.Business.Factories;
+using Eternity.Common.Enums;
+using Eternity.Common.Exceptions;
 
 namespace Eternity.Business.Services
 {
@@ -21,11 +26,43 @@ namespace Eternity.Business.Services
             _calculationFactory = calculationFactory;
         }
 
-        public double Compute(string mathematicalExpression)
+        public string Compute(string mathematicalExpression)
         {
+            Console.WriteLine($"Executing computation for {mathematicalExpression}");
+
             // Convert from infix to postfix format
-            var postfixString = _parser.Parse(mathematicalExpression);
-            return 2; 
+            Queue<string> postfixQueue = _parser.Parse(mathematicalExpression);
+
+            Console.WriteLine($"Postfix string: {string.Join(":", postfixQueue)}");
+
+            Stack<double> operands = new Stack<double>();
+
+            try
+            {
+                foreach (string token in postfixQueue)
+                {
+                    if (OperatorManifest.IsOperator(token))
+                    {
+                        ICalculation calculation = _calculationFactory.CreateCalculation(token);
+                        double secondOperand = operands.Pop();
+                        double firstOperand = operands.Pop();
+                        double result = calculation.Compute(firstOperand, secondOperand);
+                        operands.Push(result);
+                    }
+                    else
+                    {
+                        operands.Push(string.IsNullOrEmpty(token) ? 0 : double.Parse(token));
+                    }
+                }
+
+                double finalResult = operands.Count > 0 ? operands.Pop() : 0;
+                return finalResult.ToString();
+            }
+            catch (OverflowException)
+            {
+                throw new CalculatorException(ErrorCode.Overflow);
+            }
+            
         }
 
     }

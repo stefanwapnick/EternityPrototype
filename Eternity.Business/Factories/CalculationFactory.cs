@@ -24,7 +24,7 @@ namespace Eternity.Business.Factories
 
         }
 
-        ICalculation CreateCalculation(string operation)
+        public ICalculation CreateCalculation(string operation)
         {
             ICalculation calculation = _registeredCalculations.FirstOrDefault(c => c.Token.Equals(operation));
             
