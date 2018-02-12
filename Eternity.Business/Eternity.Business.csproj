@@ -40,6 +40,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Calculations\Impl\NaturalExpCalculation.cs" />
+    <Compile Include="Calculations\Impl\NaturalLogCalculation.cs" />
     <Compile Include="Calculations\OperatorManifest.cs" />
     <Compile Include="Calculations\Impl\AdditionCalculation.cs" />
     <Compile Include="Calculations\Impl\DivisionCalculation.cs" />

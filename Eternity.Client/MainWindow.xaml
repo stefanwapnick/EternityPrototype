@@ -8,7 +8,7 @@
         mc:Ignorable="d"
         d:DataContext="{d:DesignInstance Type=viewModels:MainWindowViewModel, IsDesignTimeCreatable=True}"
         ResizeMode="NoResize"
-        Title="Eternity" Height="460" Width="320"
+        Title="Eternity" Height="460" Width="360"
         Background="#333333">
     
     <Window.InputBindings>
@@ -53,6 +53,8 @@
         <KeyBinding Key="OemPlus" Command="{Binding ExecuteComputationCommand}"></KeyBinding>
         <KeyBinding Key="Enter" Command="{Binding ExecuteComputationCommand}"></KeyBinding>
 
+        <KeyBinding Modifiers="Shift" Key="D6" Command="{Binding InputCharacterCommand}" CommandParameter="^"></KeyBinding>
+        
     </Window.InputBindings>
     
     <Window.Resources>
@@ -98,6 +100,7 @@
                     <ColumnDefinition Width="1*"></ColumnDefinition>
                     <ColumnDefinition Width="1*"></ColumnDefinition>
                     <ColumnDefinition Width="1*"></ColumnDefinition>
+                    <ColumnDefinition Width="1*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
 
                 <Button Grid.Row="0" Grid.Column="0" Command="{Binding InputCharacterCommand}" CommandParameter="7">7</Button>
@@ -117,6 +120,19 @@
                 <Button Grid.Row="1" Grid.Column="3" Command="{Binding InputCharacterCommand}" CommandParameter="*">x</Button>
                 <Button Grid.Row="2" Grid.Column="3" Command="{Binding InputCharacterCommand}" CommandParameter="-">-</Button>
                 <Button Grid.Row="3" Grid.Column="3" Command="{Binding InputCharacterCommand}" CommandParameter="+">+</Button>
+
+
+                <Button Grid.Row="0" Grid.Column="4" Command="{Binding InputCharacterCommand}" CommandParameter="^">
+                    <Button.Content>
+                        <TextBlock>
+                            <Run>x</Run>
+                            <Run BaselineAlignment="Superscript" FontSize="20">y</Run>
+                        </TextBlock>
+                    </Button.Content>
+                </Button>
+                
+                <Button Grid.Row="1" Grid.Column="4" Grid.RowSpan="3"></Button>
+                
 
             </Grid>
 

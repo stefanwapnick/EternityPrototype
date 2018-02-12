@@ -4,17 +4,36 @@ namespace Eternity.Business.Calculations.Impl
 {
     public class PowerCalculation : ICalculation
     {
+        
         public double Compute(double firstOperand, double secondOperand)
         {
             // Integer power, can use simple divide and conquer algorithm
             return secondOperand % 1 < Double.Epsilon
                 ? ComputeForIntegerPower(firstOperand, (long) secondOperand)
-                : ComputePowerSeries(firstOperand, secondOperand);
+                : ComputeWithTaylorSeries(firstOperand, secondOperand);
         }
 
-        private double ComputePowerSeries(double baseNumber, double power)
+        private double ComputeWithTaylorSeries(double baseNumber, double power)
         {
-            return Math.Pow(baseNumber, power);
+            // x^y = e^(y*ln(x))
+
+            double integerPower = Math.Floor(power);
+            double integerPowerPart = ComputeForIntegerPower(baseNumber, (long) integerPower);
+
+            power -= integerPower; 
+
+            if (baseNumber - 1 < Double.Epsilon)
+                return baseNumber;
+
+            int factor = 0; 
+            while(Math.Abs(baseNumber) > 1)
+            {
+                baseNumber /= Math.E;
+                factor++; 
+            }
+
+            double lnComponent = factor + new NaturalLogCalculation().Compute(baseNumber);
+            return integerPowerPart * new NaturalExpCalculation().Compute(power*lnComponent);
         }
 
         private double ComputeForIntegerPower(double baseNumber, long power)
