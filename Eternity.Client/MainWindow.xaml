@@ -51,8 +51,9 @@
         <KeyBinding Key="Delete" Command="{Binding DeleteCommand}"></KeyBinding>
 
         <KeyBinding Key="OemPlus" Command="{Binding ExecuteComputationCommand}"></KeyBinding>
+        <KeyBinding Key="Return" Command="{Binding ExecuteComputationCommand}"></KeyBinding>
         <KeyBinding Key="Enter" Command="{Binding ExecuteComputationCommand}"></KeyBinding>
-
+        
         <KeyBinding Modifiers="Shift" Key="D6" Command="{Binding InputCharacterCommand}" CommandParameter="^"></KeyBinding>
         
     </Window.InputBindings>
