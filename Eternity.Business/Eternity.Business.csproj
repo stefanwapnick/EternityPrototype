@@ -50,7 +50,6 @@
     <Compile Include="Calculations\Impl\PowerCalculation.cs" />
     <Compile Include="Calculations\Impl\SubtractionCalculation.cs" />
     <Compile Include="Calculations\OperatorMetadata.cs" />
-    <Compile Include="Events\ResultComputedEventArgs.cs" />
     <Compile Include="Factories\CalculationFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\ICalculatorEngine.cs" />

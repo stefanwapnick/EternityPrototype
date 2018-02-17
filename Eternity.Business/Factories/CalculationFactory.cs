@@ -29,7 +29,7 @@ namespace Eternity.Business.Factories
             ICalculation calculation = _registeredCalculations.FirstOrDefault(c => c.Token.Equals(operation));
             
             if(calculation == null)
-                throw new CalculatorException(ErrorCode.ParsingError);
+                throw new CalculatorException(ErrorCode.UnsupportedCalculation, operation);
 
             return calculation;
         }

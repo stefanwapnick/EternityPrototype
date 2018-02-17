@@ -4,6 +4,7 @@
     {
         DivisionByZero, 
         Overflow,
-        ParsingError
+        ParsingError, 
+        UnsupportedCalculation
     }
 }

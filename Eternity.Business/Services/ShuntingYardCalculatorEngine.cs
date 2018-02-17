@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using Eternity.Business.Calculations;
-using Eternity.Business.Events;
 using Eternity.Business.Factories;
 using Eternity.Common.Enums;
 using Eternity.Common.Exceptions;
